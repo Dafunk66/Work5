@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPersonnelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPersonnelLabel_persID}" for="persID" />
+                    <h:inputText id="persID" value="#{personnelController.selected.persID}" title="#{bundle.EditPersonnelTitle_persID}" required="true" requiredMessage="#{bundle.EditPersonnelRequiredMessage_persID}"/>
+                    <h:outputLabel value="#{bundle.EditPersonnelLabel_persName}" for="persName" />
+                    <h:inputText id="persName" value="#{personnelController.selected.persName}" title="#{bundle.EditPersonnelTitle_persName}" />
+                    <h:outputLabel value="#{bundle.EditPersonnelLabel_persAddress}" for="persAddress" />
+                    <h:inputText id="persAddress" value="#{personnelController.selected.persAddress}" title="#{bundle.EditPersonnelTitle_persAddress}" />
+                    <h:outputLabel value="#{bundle.EditPersonnelLabel_persTel}" for="persTel" />
+                    <h:inputText id="persTel" value="#{personnelController.selected.persTel}" title="#{bundle.EditPersonnelTitle_persTel}" />
+                    <h:outputLabel value="#{bundle.EditPersonnelLabel_persPosition}" for="persPosition" />
+                    <h:inputText id="persPosition" value="#{personnelController.selected.persPosition}" title="#{bundle.EditPersonnelTitle_persPosition}" />
+                </h:panelGrid>
+                <h:commandLink action="#{personnelController.update}" value="#{bundle.EditPersonnelSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPersonnelViewLink}"/>
+                <br />
+                <h:commandLink action="#{personnelController.prepareList}" value="#{bundle.EditPersonnelShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPersonnelIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

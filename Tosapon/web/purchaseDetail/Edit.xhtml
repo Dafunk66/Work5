@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPurchaseDetailTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPurchaseDetailLabel_purchNo}" for="purchNo" />
+                    <h:inputText id="purchNo" value="#{purchaseDetailController.selected.purchNo}" title="#{bundle.EditPurchaseDetailTitle_purchNo}" required="true" requiredMessage="#{bundle.EditPurchaseDetailRequiredMessage_purchNo}"/>
+                    <h:outputLabel value="#{bundle.EditPurchaseDetailLabel_purchQty}" for="purchQty" />
+                    <h:inputText id="purchQty" value="#{purchaseDetailController.selected.purchQty}" title="#{bundle.EditPurchaseDetailTitle_purchQty}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseDetailLabel_cost}" for="cost" />
+                    <h:inputText id="cost" value="#{purchaseDetailController.selected.cost}" title="#{bundle.EditPurchaseDetailTitle_cost}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseDetailLabel_netTotal}" for="netTotal" />
+                    <h:inputText id="netTotal" value="#{purchaseDetailController.selected.netTotal}" title="#{bundle.EditPurchaseDetailTitle_netTotal}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseDetailLabel_receiveID}" for="receiveID" />
+                    <h:selectOneMenu id="receiveID" value="#{purchaseDetailController.selected.receiveID}" title="#{bundle.EditPurchaseDetailTitle_receiveID}" >
+                        <f:selectItems value="#{receivePascelController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{purchaseDetailController.update}" value="#{bundle.EditPurchaseDetailSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPurchaseDetailViewLink}"/>
+                <br />
+                <h:commandLink action="#{purchaseDetailController.prepareList}" value="#{bundle.EditPurchaseDetailShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPurchaseDetailIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

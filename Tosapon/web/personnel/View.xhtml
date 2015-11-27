@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPersonnelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPersonnelLabel_persID}"/>
+                    <h:outputText value="#{personnelController.selected.persID}" title="#{bundle.ViewPersonnelTitle_persID}"/>
+                    <h:outputText value="#{bundle.ViewPersonnelLabel_persName}"/>
+                    <h:outputText value="#{personnelController.selected.persName}" title="#{bundle.ViewPersonnelTitle_persName}"/>
+                    <h:outputText value="#{bundle.ViewPersonnelLabel_persAddress}"/>
+                    <h:outputText value="#{personnelController.selected.persAddress}" title="#{bundle.ViewPersonnelTitle_persAddress}"/>
+                    <h:outputText value="#{bundle.ViewPersonnelLabel_persTel}"/>
+                    <h:outputText value="#{personnelController.selected.persTel}" title="#{bundle.ViewPersonnelTitle_persTel}"/>
+                    <h:outputText value="#{bundle.ViewPersonnelLabel_persPosition}"/>
+                    <h:outputText value="#{personnelController.selected.persPosition}" title="#{bundle.ViewPersonnelTitle_persPosition}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personnelController.destroyAndView}" value="#{bundle.ViewPersonnelDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPersonnelEditLink}"/>
+                <br />
+                <h:commandLink action="#{personnelController.prepareCreate}" value="#{bundle.ViewPersonnelCreateLink}" />
+                <br />
+                <h:commandLink action="#{personnelController.prepareList}" value="#{bundle.ViewPersonnelShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPersonnelIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

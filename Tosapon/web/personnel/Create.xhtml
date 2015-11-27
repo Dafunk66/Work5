@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePersonnelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePersonnelLabel_persID}" for="persID" />
+                    <h:inputText id="persID" value="#{personnelController.selected.persID}" title="#{bundle.CreatePersonnelTitle_persID}" required="true" requiredMessage="#{bundle.CreatePersonnelRequiredMessage_persID}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonnelLabel_persName}" for="persName" />
+                    <h:inputText id="persName" value="#{personnelController.selected.persName}" title="#{bundle.CreatePersonnelTitle_persName}" />
+                    <h:outputLabel value="#{bundle.CreatePersonnelLabel_persAddress}" for="persAddress" />
+                    <h:inputText id="persAddress" value="#{personnelController.selected.persAddress}" title="#{bundle.CreatePersonnelTitle_persAddress}" />
+                    <h:outputLabel value="#{bundle.CreatePersonnelLabel_persTel}" for="persTel" />
+                    <h:inputText id="persTel" value="#{personnelController.selected.persTel}" title="#{bundle.CreatePersonnelTitle_persTel}" />
+                    <h:outputLabel value="#{bundle.CreatePersonnelLabel_persPosition}" for="persPosition" />
+                    <h:inputText id="persPosition" value="#{personnelController.selected.persPosition}" title="#{bundle.CreatePersonnelTitle_persPosition}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personnelController.create}" value="#{bundle.CreatePersonnelSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{personnelController.prepareList}" value="#{bundle.CreatePersonnelShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePersonnelIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

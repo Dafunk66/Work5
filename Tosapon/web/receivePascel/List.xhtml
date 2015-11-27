@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListReceivePascelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListReceivePascelEmpty}" rendered="#{receivePascelController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{receivePascelController.items.rowCount > 0}">
+                    <h:outputText value="#{receivePascelController.pagination.pageFirstItem + 1}..#{receivePascelController.pagination.pageLastItem + 1}/#{receivePascelController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{receivePascelController.previous}" value="#{bundle.Previous} #{receivePascelController.pagination.pageSize}" rendered="#{receivePascelController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{receivePascelController.next}" value="#{bundle.Next} #{receivePascelController.pagination.pageSize}" rendered="#{receivePascelController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{receivePascelController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReceivePascelTitle_receiveID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.receiveID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReceivePascelTitle_receiveDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.receiveDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReceivePascelTitle_receiveDetail}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.receiveDetail}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReceivePascelTitle_agentID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.agentID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReceivePascelTitle_persID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.persID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{receivePascelController.prepareView}" value="#{bundle.ListReceivePascelViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{receivePascelController.prepareEdit}" value="#{bundle.ListReceivePascelEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{receivePascelController.destroy}" value="#{bundle.ListReceivePascelDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{receivePascelController.prepareCreate}" value="#{bundle.ListReceivePascelCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListReceivePascelIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

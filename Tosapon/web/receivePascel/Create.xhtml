@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateReceivePascelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateReceivePascelLabel_receiveID}" for="receiveID" />
+                    <h:inputText id="receiveID" value="#{receivePascelController.selected.receiveID}" title="#{bundle.CreateReceivePascelTitle_receiveID}" required="true" requiredMessage="#{bundle.CreateReceivePascelRequiredMessage_receiveID}"/>
+                    <h:outputLabel value="#{bundle.CreateReceivePascelLabel_receiveDate}" for="receiveDate" />
+                    <h:inputText id="receiveDate" value="#{receivePascelController.selected.receiveDate}" title="#{bundle.CreateReceivePascelTitle_receiveDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateReceivePascelLabel_receiveDetail}" for="receiveDetail" />
+                    <h:selectOneMenu id="receiveDetail" value="#{receivePascelController.selected.receiveDetail}" title="#{bundle.CreateReceivePascelTitle_receiveDetail}" >
+                        <f:selectItems value="#{receiveDetailController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateReceivePascelLabel_agentID}" for="agentID" />
+                    <h:selectOneMenu id="agentID" value="#{receivePascelController.selected.agentID}" title="#{bundle.CreateReceivePascelTitle_agentID}" >
+                        <f:selectItems value="#{agentController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateReceivePascelLabel_persID}" for="persID" />
+                    <h:selectOneMenu id="persID" value="#{receivePascelController.selected.persID}" title="#{bundle.CreateReceivePascelTitle_persID}" >
+                        <f:selectItems value="#{personnelController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{receivePascelController.create}" value="#{bundle.CreateReceivePascelSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{receivePascelController.prepareList}" value="#{bundle.CreateReceivePascelShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateReceivePascelIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

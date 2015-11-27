@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewReceivePascelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewReceivePascelLabel_receiveID}"/>
+                    <h:outputText value="#{receivePascelController.selected.receiveID}" title="#{bundle.ViewReceivePascelTitle_receiveID}"/>
+                    <h:outputText value="#{bundle.ViewReceivePascelLabel_receiveDate}"/>
+                    <h:outputText value="#{receivePascelController.selected.receiveDate}" title="#{bundle.ViewReceivePascelTitle_receiveDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewReceivePascelLabel_receiveDetail}"/>
+                    <h:outputText value="#{receivePascelController.selected.receiveDetail}" title="#{bundle.ViewReceivePascelTitle_receiveDetail}"/>
+                    <h:outputText value="#{bundle.ViewReceivePascelLabel_agentID}"/>
+                    <h:outputText value="#{receivePascelController.selected.agentID}" title="#{bundle.ViewReceivePascelTitle_agentID}"/>
+                    <h:outputText value="#{bundle.ViewReceivePascelLabel_persID}"/>
+                    <h:outputText value="#{receivePascelController.selected.persID}" title="#{bundle.ViewReceivePascelTitle_persID}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{receivePascelController.destroyAndView}" value="#{bundle.ViewReceivePascelDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewReceivePascelEditLink}"/>
+                <br />
+                <h:commandLink action="#{receivePascelController.prepareCreate}" value="#{bundle.ViewReceivePascelCreateLink}" />
+                <br />
+                <h:commandLink action="#{receivePascelController.prepareList}" value="#{bundle.ViewReceivePascelShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewReceivePascelIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

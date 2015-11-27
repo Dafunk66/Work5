@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateReceiveDetailTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateReceiveDetailLabel_receiveID}" for="receiveID" />
+                    <h:inputText id="receiveID" value="#{receiveDetailController.selected.receiveID}" title="#{bundle.CreateReceiveDetailTitle_receiveID}" required="true" requiredMessage="#{bundle.CreateReceiveDetailRequiredMessage_receiveID}"/>
+                    <h:outputLabel value="#{bundle.CreateReceiveDetailLabel_receiveQty}" for="receiveQty" />
+                    <h:inputText id="receiveQty" value="#{receiveDetailController.selected.receiveQty}" title="#{bundle.CreateReceiveDetailTitle_receiveQty}" />
+                    <h:outputLabel value="#{bundle.CreateReceiveDetailLabel_receivePascel}" for="receivePascel" />
+                    <h:selectOneMenu id="receivePascel" value="#{receiveDetailController.selected.receivePascel}" title="#{bundle.CreateReceiveDetailTitle_receivePascel}" required="true" requiredMessage="#{bundle.CreateReceiveDetailRequiredMessage_receivePascel}">
+                        <f:selectItems value="#{receivePascelController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{receiveDetailController.create}" value="#{bundle.CreateReceiveDetailSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{receiveDetailController.prepareList}" value="#{bundle.CreateReceiveDetailShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateReceiveDetailIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
